@@ -54,6 +54,7 @@ let package = Package(
     .library(name: "Collections", targets: ["Collections"]),
     .library(name: "DequeModule", targets: ["DequeModule"]),
     .library(name: "OrderedCollections", targets: ["OrderedCollections"]),
+    .library(name: "HeapModule", targets: ["HeapModule"]),
 
     .executable(name: "swift-collections-benchmark", targets: ["swift-collections-benchmark"]),
   ],
@@ -67,6 +68,7 @@ let package = Package(
       dependencies: [
         "DequeModule",
         "OrderedCollections",
+        "HeapModule",
       ],
       path: "Sources/Collections",
       swiftSettings: settings),
@@ -124,6 +126,14 @@ let package = Package(
     .testTarget(
       name: "OrderedCollectionsTests",
       dependencies: ["OrderedCollections", "CollectionsTestSupport"],
+      swiftSettings: settings),
+
+    .target(
+      name: "HeapModule",
+      swiftSettings: settings),
+    .testTarget(
+      name: "HeapModuleTests",
+      dependencies: [ "HeapModule", "CollectionsTestSupport" ],
       swiftSettings: settings),
   ],
   cxxLanguageStandard: .cxx1z

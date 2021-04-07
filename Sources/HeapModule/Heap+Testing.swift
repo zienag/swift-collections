@@ -9,6 +9,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-@_exported import DequeModule
-@_exported import OrderedCollections
-@_exported import HeapModule
+// This file contains exported but non-public entry points to support clear box
+// testing.
+
+extension Heap {
+  @_spi(Testing)
+  public var _storage: [Element] { _guts }
+}
